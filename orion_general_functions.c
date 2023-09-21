@@ -16,11 +16,11 @@ int is_orion_interactive(void)
  */
 void execute_orion_cmd(char **parsed_cmd)
 {
-	BuiltIn orion_built_in_functions[4] = {
-		{"exit", orion_exit},
-		{"env", orion_env},
-		{"cd", orion_cd},
-		{"echo", orion_echo}
+	OrionBuiltIn orion_built_in_functions[4] = {
+		{"exit", orion_exit_shell},
+		{"env", orion_print_environment},
+		{"cd", orion_change_directory},
+		{"echo", orion_echo_cmd}
 	};
 	int orion_built_in_num, is_built_in = 0, orion_counter = 0;
 
@@ -40,7 +40,7 @@ void execute_orion_cmd(char **parsed_cmd)
 	}
 
 	if (is_built_in == 0)
-		perform_actions(parsed_cmd);
+		perform_orion_actions(parsed_cmd);
 }
 
 /**

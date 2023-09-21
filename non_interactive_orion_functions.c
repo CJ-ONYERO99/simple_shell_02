@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "orion_shell_header.h"
 
 /**
  * start_orion_non_interactive - starts ORION shell in non-interactive mode

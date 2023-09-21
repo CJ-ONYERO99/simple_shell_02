@@ -1,4 +1,4 @@
-#include "ORION_SHELL_HEADER.h"
+#include "orion_shell_header.h"
 
 /**
  * orion_exit_shell - function to implement in-built exit
@@ -46,7 +46,7 @@ int orion_exit_shell(char **parsed_cmd)
  * @parsed_cmd: parsed command to execute
  * Return: int
  */
-int orion_print_environment(char **parsed_cmd)
+int orion_print_environment(char **parsed_cmd __attribute__((unused)))
 {
 	int orion_counter = 0;
 
