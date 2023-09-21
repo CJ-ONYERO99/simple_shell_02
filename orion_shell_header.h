@@ -27,7 +27,7 @@ char *orion_get_cmd_path(char *cmd);
 char *orion_implode_tokens(char **tokens, char *delimiter);
 void execute_orion_cmd(char **parsed_cmd);
 char *orion_read_input_lines(void);
-int orion_is_whitespace(char *input_str);
+int orion_is_white_space(char *input_str);
 char *orion_tokenize_str(char *input_str, const char *delimiter);
 int orion_echo_cmd(char **parsed_cmds);
 int is_orion_cmd_available(char *full_cmd_path);
@@ -35,7 +35,7 @@ int orion_write_error_msg(char *cmd_str);
 void free_orion_cmd_memory(char **parsed_cmd);
 void execute_orion_system_call(char *cmd_to_execute, char **parsed_args);
 void handle_orion_file(char *file_name);
-void process_orion_file(char *file_name);
+void orion_process_file(char *file_name);
 
 /* ORION BUILT-IN FUNCTIONS */
 int orion_exit_shell(char **parsed_cmd);

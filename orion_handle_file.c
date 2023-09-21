@@ -25,7 +25,7 @@ void orion_handle_file(char *file_name)
 				0)
 		{
 			orion_file_buffer[bytes_read] = '\0';
-			if (!orion_is_whitespace(orion_file_buffer))
+			if (!orion_is_white_space(orion_file_buffer))
 			{
 				parsed_command = orion_parse_cmd(orion_file_buffer, ORION_TOKEN_SEPARATOR);
 				execute_orion_cmd(parsed_command);

@@ -27,7 +27,7 @@ void start_orion_interactive(void)
 		}
 		else
 		{
-			if (!orion_is_whitespace(cmd_input))
+			if (!orion_is_white_space(cmd_input))
 			{
 				parsed_cmd = orion_parse_cmd(cmd_input, ORION_TOKEN_SEPARATOR);
 				if (parsed_cmd[0][0] != '#')

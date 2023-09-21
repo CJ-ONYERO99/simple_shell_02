@@ -12,7 +12,7 @@ void start_orion_non_interactive(void)
 
 	while ((orion_cmd_input = orion_read_input_lines()) != NULL)
 	{
-		if (!orion_is_whitespace(orion_cmd_input))
+		if (!orion_is_white_space(orion_cmd_input))
 		{
 			orion_parsed_cmd = orion_parse_cmd(orion_cmd_input, ORION_TOKEN_SEPARATOR);
 			if (orion_parsed_cmd[0][0] != '#')

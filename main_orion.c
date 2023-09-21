@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		process_orion_file(argv[1]);
+
+		orion_process_file(argv[1]);
 	}
 	else
 	{
