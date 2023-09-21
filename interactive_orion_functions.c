@@ -1,7 +1,7 @@
 #include "orion_shell_header.h"
 
-/**gl
- * start_orion_interactive - starts Orion shell in interactive mode
+/**
+ * start_orion_interactive - start Orion shell in interactive mode
  * Return: void
  */
 
