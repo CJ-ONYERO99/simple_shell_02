@@ -1,7 +1,7 @@
 #include "orion_shell_header.h"
 
 /**
- * orion_str_tokenizer - splits string into tokens
+ * orion_tokenize_str- splits string into tokens
  * @input_str: pointer to string to tokenize
  * @delimiter: pointer to delimiters
  * Return: pointer to string of token
