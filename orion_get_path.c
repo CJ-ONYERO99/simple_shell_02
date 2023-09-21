@@ -14,7 +14,8 @@ char *orion_get_cmd_path(char *cmd)
 
 	/* Perform PATH manipulation */
 
-	splitted_path = orion_tokenize_str(copy_of_system_path, ORION_TOKEN_SEPARATOR);
+	splitted_path = orion_tokenize_str(copy_of_system_path,
+			ORION_TOKEN_SEPARATOR);
 
 	while (splitted_path != NULL)
 	{

@@ -6,7 +6,7 @@
  */
 char *orion_read_input_lines(void)
 {
-	char *input_cmd = NULL; // Changed from input_commands
+	char *input_cmd = NULL;
 	size_t orion_buffer_size = 0;
 
 	if (getline(&input_cmd, &orion_buffer_size, stdin) == -1)
