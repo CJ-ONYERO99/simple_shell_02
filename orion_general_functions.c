@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "orion_shell_header.h"
 
 /**
  * is_orion_interactive - checks whether shell is in interactive mode
@@ -10,11 +10,11 @@ int is_orion_interactive(void)
 }
 
 /**
- * execute_orion_command - function to execute command
- * @parsed_command: pointer to parsed commands
+ * execute_orion_cmd - function to execute command
+ * @parsed_cmd: pointer to parsed commands
  * Return: void
  */
-void execute_orion_command(char **parsed_command)
+void execute_orion_cmd(char **parsed_cmd)
 {
 	BuiltIn orion_built_in_functions[4] = {
 		{"exit", orion_exit},
@@ -29,18 +29,18 @@ void execute_orion_command(char **parsed_command)
 
 	while (orion_counter < orion_built_in_num)
 	{
-		if (strcmp(parsed_command[0],
+		if (strcmp(parsed_cmd[0],
 					orion_built_in_functions[orion_counter].name) == 0)
 		{
 			is_built_in = 1;
-			orion_built_in_functions[orion_counter].command(parsed_command);
+			orion_built_in_functions[orion_counter].command(parsed_cmd);
 			break;
 		}
 		orion_counter++;
 	}
 
 	if (is_built_in == 0)
-		perform_actions(parsed_command);
+		perform_actions(parsed_cmd);
 }
 
 /**
