@@ -1,7 +1,7 @@
-#include "ORION_SHELL_HEADER.h"
+#include "orion_shell_header.h"
 
 /**
- * orion_read_lines - reads lines from a file or stdin
+ * orion_read_input_lines - reads lines from a file or stdin
  * Return: pointer to lines read as a string
  */
 char *orion_read_input_lines(void)

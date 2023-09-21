@@ -1,10 +1,10 @@
-#include "ORION_SHELL_HEADER.h"
+#include "orion_shell_header.h"
 
 /**
- * orion_implode - implodes array of string into one string
+ * orion_implode_tokens - implodes array of string into one string
  * @splitted_tokens: pointer to array of tokens
- * @needle: pointer to needle
- * Return: pointer to imploded string
+ * @delimeter: pointer to delimeter
+ * Return: pointer to result
  */
 char *orion_implode_tokens(char **splitted_tokens, char *delimeter)
 {
