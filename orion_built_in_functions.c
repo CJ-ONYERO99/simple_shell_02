@@ -23,9 +23,8 @@ int orion_exit_shell(char **parsed_cmd)
 				return (1);
 			}
 
-			snprintf(error_message, ORION_MAX_BUFFER_SIZE,
-					 "%s: 1: %s: Illegal number: %d\n",
-					 orion_shell_name, "exit", exit_status);
+			snprintf(error_message, 1024,"%s: 1: %s: Illegal number: %d\n", 
+					orion_shell_name, "exit", exit_status);
 
 			write(STDERR_FILENO, error_message, strlen(error_message));
 			free(error_message);
@@ -66,7 +65,7 @@ int orion_print_environment(char **parsed_cmd __attribute__((unused)))
  */
 int orion_change_directory(char **parsed_cmd)
 {
-	char orion_previous_dir[ORION_MAX_BUFFER_SIZE];
+	char orion_previous_dir[1024];
 
 	getcwd(orion_previous_dir, sizeof(orion_previous_dir));
 
