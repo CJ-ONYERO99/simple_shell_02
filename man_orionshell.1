@@ -1,0 +1,82 @@
+.\" Manpage for Orion Shell.
+.TH man 1 "23 September 2023" "1.0.0" "Orion Shell man page"
+
+.SH NAME
+Orion Shell \- a simple Unix-like shell program written in C.
+
+.SH SYNOPSIS
+.B orionshell
+
+.SH DESCRIPTION
+.B Orion Shell \fRis a simple Unix-like shell program written in C as part of the Orion Project. It provides a command-line interface for interacting with your computer.
+
+.SH COMMANDS
+The Orion Shell supports various commands and features, including but not limited to:
+.IP
+- Running external commands.
+.IP
+- Built-in shell commands: \fBexit\fR, \fBenv\fR, \fBcd\fR, \fBecho\fR.
+.IP
+- Piping and redirection.
+.IP
+- Scripting support.
+.IP
+- Interactive and non-interactive modes.
+
+.SH INTERACTIVE MODE
+When run without any arguments, Orion Shell enters interactive mode, where it waits for user input and executes commands. For example:
+.IP
+.B $ orionshell
+.IP
+.B ($)
+.IP
+.B ($) ls
+.IP
+.B file1.txt file2.txt
+.IP
+.B ($)
+.IP
+.B ($) exit
+.IP
+.B $
+
+.SH NON-INTERACTIVE MODE
+You can also use Orion Shell in non-interactive mode by piping commands or providing a script file as input. For example:
+.IP
+.B $ echo "ls" | orionshell
+.IP
+.B file1.txt file2.txt
+
+.SH SCRIPTING
+Orion Shell allows you to create shell scripts by writing a series of commands in a text file. You can then execute the script using the shell. For example, if you have a script file named \fBmyscript.sh\fR:
+.IP
+.B $ orionshell < myscript.sh
+
+.SH OPTIONS
+.B Orion Shell \fRdoes not have any specific command-line options.
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+.SS [Chimezie Joshua Onyero]
+.SS [chimeziejoshuaonyero999@gmail.com]
+
+.SH SEE ALSO
+Online documentation and project repository available at [https://github.com/CJ-ONYERO99/simple_shell.git]
+
+.SH REPORTING BUGS
+Please report bugs to the GitHub repository at [https://github.com/CJ-ONYERO99/simple_shell.git].
+
+.SH COPYRIGHT
+Orion Shell is open-source software released under the [License] license.
+
+.SH DISCLAIMER
+This manual page documents the Orion Shell project. Orion Shell is a work in progress, and some features may not be fully implemented or may change in future releases.
+
+.SH VERSION
+1.0.0
+
+.SH DATE
+23 September 2023
+
