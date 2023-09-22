@@ -88,9 +88,8 @@ int orion_write_error_msg(char *cmd_str)
 		return (1);
 	}
 
-	snprintf(error_message, ORION_MAX_BUFFER_SIZE,
-			 "%s: 1: %s: command not found\n",
-			 orion_shell_name, cmd_str);
+	snprintf(error_message, 1024, "%s: 1: %s: command not found\n",
+			orion_shell_name, cmd_str);
 
 	write(STDERR_FILENO, error_message, strlen(error_message));
 	free(error_message);
