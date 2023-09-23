@@ -8,7 +8,7 @@
  */
 void orion_handle_file(char *file_name)
 {
-	char **parsed_command;
+	char **parsed_cmd;
 	char orion_file_buffer[ORION_MAX_BUFFER_SIZE];
 	ssize_t bytes_read;
 	int file_handler = open(file_name, O_RDONLY);
@@ -27,9 +27,9 @@ void orion_handle_file(char *file_name)
 			orion_file_buffer[bytes_read] = '\0';
 			if (!orion_is_white_space(orion_file_buffer))
 			{
-				parsed_command = orion_parse_cmd(orion_file_buffer, ORION_TOKEN_SEPARATOR);
-				execute_orion_cmd(parsed_command);
-				free_orion_cmd_memory(parsed_command);
+				parsed_cmd = orion_parse_cmd(orion_file_buffer, ORION_TOKEN_SEPARATOR);
+				execute_orion_cmd(parsed_cmd);
+				free_orion_cmd_memory(parsed_cmd);
 			}
 		}
 

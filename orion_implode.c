@@ -23,6 +23,7 @@ char *orion_implode_tokens(char **splitted_tokens, char *delimeter)
 
 		strcat(result, splitted_tokens[splitted_token_index]);
 		splitted_token_index++;
+		free(splitted_tokens);
 	}
 
 	return (result);
