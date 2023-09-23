@@ -1,18 +1,18 @@
-#include "orion_shell_header.h"
+#include "orion_shell.h"
 
 /**
- * orion_exit_shell - function to implement in-built exit
- * @parsed_cmd: parsed command to execute
+ * orion_exit - function to implement in-built exit
+ * @parsed_commands: parsed command to execute
  * Return: int
  */
-int orion_exit_shell(char **parsed_cmd)
+int orion_exit(char **parsed_commands)
 {
 	int exit_status;
 	char *error_message;
 
-	if (parsed_cmd[1])
+	if (parsed_commands[1])
 	{
-		exit_status = atoi(parsed_cmd[1]);
+		exit_status = atoi(parsed_commands[1]);
 		if (exit_status < 0)
 		{
 			error_message = malloc(ORION_MAX_BUFFER_SIZE * sizeof(char));
@@ -23,15 +23,15 @@ int orion_exit_shell(char **parsed_cmd)
 				return (1);
 			}
 
-			snprintf(error_message, 1024, "%s: 1: %s: Illegal number: %d\n",
+			snprintf(error_message, 1024,
+					"%s: 1: %s: Illegal number: %d\n",
 					orion_shell_name, "exit", exit_status);
 
 			write(STDERR_FILENO, error_message, strlen(error_message));
+			free(error_message);
 		}
 		else
 			exit(exit_status);
-
-		free(error_message);
 		return (exit_status);
 	}
 	else
@@ -42,11 +42,11 @@ int orion_exit_shell(char **parsed_cmd)
 }
 
 /**
- * orion_print_environment - function to implement in-built env
- * @parsed_cmd: parsed command to execute
+ * orion_env - function to implement in-built env
+ * @parsed_commands: parsed command to execute
  * Return: int
  */
-int orion_print_environment(char **parsed_cmd __attribute__((unused)))
+int orion_env(char **parsed_commands __attribute__((unused)))
 {
 	int orion_counter = 0;
 
@@ -60,61 +60,61 @@ int orion_print_environment(char **parsed_cmd __attribute__((unused)))
 }
 
 /**
- * orion_change_directory - function to implement in-built cd
- * @parsed_cmd: parsed command to execute
+ * orion_cd - function to implement in-built cd
+ * @parsed_commands: parsed command to execute
  * Return: int
  */
-int orion_change_directory(char **parsed_cmd)
+int orion_cd(char **parsed_commands)
 {
 	char orion_previous_dir[1024];
 
 	getcwd(orion_previous_dir, sizeof(orion_previous_dir));
 
-	if (parsed_cmd[1] == NULL)
+	if (parsed_commands[1] == NULL)
 	{
-		parsed_cmd[1] = getenv("HOME");
+		parsed_commands[1] = getenv("HOME");
 	}
-	else if (strcmp(parsed_cmd[1], "-") == 0)
+	else if (strcmp(parsed_commands[1], "-") == 0)
 	{
-		parsed_cmd[1] = getenv("OLDPWD");
-		if (parsed_cmd[1] == NULL)
+		parsed_commands[1] = getenv("OLDPWD");
+		if (parsed_commands[1] == NULL)
 		{
 			perror(orion_shell_name);
 			return (1);
 		}
 	}
 
-	if (chdir(parsed_cmd[1]) != 0)
+	if (chdir(parsed_commands[1]) != 0)
 	{
 		perror(orion_shell_name);
 	}
 	else
 	{
 		setenv("OLDPWD", orion_previous_dir, 1);
-		setenv("PWD", parsed_cmd[1], 1);
+		setenv("PWD", parsed_commands[1], 1);
 	}
 	return (0);
 }
 
 /**
- * orion_echo_cmd - function to implement in-built echo
- * @parsed_cmd: parsed command to execute
+ * orion_echo - function to implement in-built echo
+ * @parsed_commands: parsed command to execute
  * Return: int
  */
-int orion_echo_cmd(char **parsed_cmd)
+int orion_echo(char **parsed_commands)
 {
 	int orion_process_id;
 
-	if (parsed_cmd[2])
+	if (parsed_commands[2])
 		write(2, "Too many arguments\n", 20);
 	else
 	{
-		if (strcmp("$$", parsed_cmd[1]) == 0)
+		if (strcmp("$$", parsed_commands[1]) == 0)
 		{
 			orion_process_id = getpid();
 			printf("%i\n", orion_process_id);
 		}
-		else if (strcmp("$?", parsed_cmd[1]) == 0)
+		else if (strcmp("$?", parsed_commands[1]) == 0)
 		{
 			int orion_exit_status;
 
@@ -124,7 +124,7 @@ int orion_echo_cmd(char **parsed_cmd)
 		}
 		else
 		{
-			printf("%s\n", parsed_cmd[1]);
+			printf("%s\n", parsed_commands[1]);
 		}
 	}
 

@@ -1,4 +1,4 @@
-#include "orion_shell_header.h"
+#include "orion_shell.h"
 
 /**
  * main - main entry to shell
@@ -13,18 +13,17 @@ int main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-
 		orion_process_file(argv[1]);
 	}
 	else
 	{
 		if (is_orion_interactive() == 1)
 		{
-			start_orion_interactive();
+			initiate_orion_interactive();
 		}
 		else
 		{
-			start_orion_non_interactive();
+			initiate_orion_non_interactive();
 		}
 	}
 	return (0);

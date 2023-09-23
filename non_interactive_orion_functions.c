@@ -1,24 +1,24 @@
-#include "orion_shell_header.h"
+#include "orion_shell.h"
 
 /**
- * start_orion_non_interactive - starts ORION shell in non-interactive mode
+ * initiate_orion_non_interactive - starts Orion shell in non-interactive mode
  * Return: void
  */
 
-void start_orion_non_interactive(void)
+void initiate_orion_non_interactive(void)
 {
-	char *orion_cmd_input;
-	char **orion_parsed_cmd;
+	char *command_inputs;
+	char **parsed_command;
 
-	while ((orion_cmd_input = orion_read_input_lines()) != NULL)
+	while ((command_inputs = orion_read_lines()) != NULL)
 	{
-		if (!orion_is_white_space(orion_cmd_input))
+		if (!orion_is_white_space(command_inputs))
 		{
-			orion_parsed_cmd = orion_parse_cmd(orion_cmd_input, ORION_TOKEN_SEPARATOR);
-			if (orion_parsed_cmd[0][0] != '#')
-				execute_orion_cmd(orion_parsed_cmd);
-			free_orion_cmd_memory(orion_parsed_cmd);
+			parsed_command = parse_command_input(command_inputs, ORION_TOKEN_SEPARATOR);
+			if (parsed_command[0][0] != '#')
+				execute_orion_command(parsed_command);
+			orion_free_command_memory(parsed_command);
 		}
-		free(orion_cmd_input);
+		free(command_inputs);
 	}
 }

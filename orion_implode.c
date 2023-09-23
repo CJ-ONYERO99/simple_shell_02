@@ -1,32 +1,30 @@
-#include "orion_shell_header.h"
+#include "orion_shell.h"
 
 /**
- * orion_implode_tokens - implodes array of string into one string
+ * orion_implode - implodes array of strings into one string
  * @splitted_tokens: pointer to array of tokens
- * @delimeter: pointer to delimeter
- * Return: pointer to result
+ * @needle: pointer to needle
+ * Return: pointer to imploded string
  */
-char *orion_implode_tokens(char **splitted_tokens, char *delimeter)
+
+char *orion_implode(char **splitted_tokens, char *needle)
 {
-	char *result = NULL;
+	char *imploded_string = malloc(0);
 	int splitted_token_index = 0, byteSize = 0;
 
 	while (splitted_tokens[splitted_token_index] != NULL)
 	{
-		byteSize = strlen(splitted_tokens[splitted_token_index]) + 1
-		+ strlen(delimeter) + 1;
-		result = realloc(result, byteSize);
+		byteSize = strlen(splitted_tokens[splitted_token_index])
+			+ 1 + strlen(needle) + 1;
+		imploded_string = realloc(imploded_string, byteSize);
 		if (splitted_token_index > 0)
 		{
-			strcat(result, delimeter);
+			strcat(imploded_string, needle);
 		}
 
-		strcat(result, splitted_tokens[splitted_token_index]);
+		strcat(imploded_string, splitted_tokens[splitted_token_index]);
 		splitted_token_index++;
-		free(splitted_tokens);
 	}
 
-	free(result);
-
-	return (result);
+	return (imploded_string);
 }

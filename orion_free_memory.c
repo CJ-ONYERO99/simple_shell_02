@@ -1,22 +1,22 @@
-#include "orion_shell_header.h"
+#include "orion_shell.h"
 
 /**
- * free_orion_cmd_memory - frees memory
+ * orion_free_command_memory - frees memory
  * Return: void
- * @parsed_cmd: pointer to memory to be freed.
+ * @parsed_command: pointer to memory to be freed.
  */
 
-void free_orion_cmd_memory(char **parsed_cmd)
+void orion_free_command_memory(char **parsed_command)
 {
 	int i;
 
-	if (parsed_cmd != NULL)
+	if (parsed_command != NULL)
 	{
-		for (i = 0; parsed_cmd[i] != NULL; i++)
+		for (i = 0; parsed_command[i] != NULL; i++)
 		{
-			free(parsed_cmd[i]);
+			free(parsed_command[i]);
 		}
 
-		free(parsed_cmd);
+		free(parsed_command);
 	}
 }
