@@ -23,7 +23,7 @@ int orion_exit_shell(char **parsed_cmd)
 				return (1);
 			}
 
-			snprintf(error_message, 1024,"%s: 1: %s: Illegal number: %d\n", 
+			snprintf(error_message, 1024, "%s: 1: %s: Illegal number: %d\n",
 					orion_shell_name, "exit", exit_status);
 
 			write(STDERR_FILENO, error_message, strlen(error_message));
