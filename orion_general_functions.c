@@ -40,7 +40,54 @@ void execute_orion_cmd(char **parsed_cmd)
 	}
 
 	if (is_built_in == 0)
+	{
+		handle_non_builtin_cmds(parsed_cmd);
+	}
+}
+
+/**
+ * handle_non_builtin_cmds - handle non-built-in commands
+ * @parsed_cmd: parsed command to execute
+ * Return: void
+ */
+void handle_non_builtin_cmds(char **parsed_cmd)
+{
+	if (strcmp(parsed_cmd[0], "ls") == 0 && strcmp(parsed_cmd[1], "-l") == 0)
+	{
+		execute_ls_l();
+	}
+	else
+	{
 		perform_orion_actions(parsed_cmd);
+	}
+}
+
+/**
+ * execute_ls_l - execute the ls -l command
+ * @parsed_cmd: parsed command to execute
+ * Return: void
+ */
+void execute_ls_l(void)
+{
+	pid_t child_pid;
+	int status;
+
+	child_pid = fork();
+
+	if (child_pid == 0)
+	{
+		execlp("ls", "ls", "-l", (char *)NULL);
+		perror("ls -l");
+		exit(EXIT_FAILURE);
+	}
+	else if (child_pid < 0)
+	{
+		perror("Fork failed");
+	}
+	else
+	{
+		waitpid(child_pid, &status, 0);
+	}
 }
 
 /**
