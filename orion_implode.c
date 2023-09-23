@@ -8,7 +8,7 @@
  */
 char *orion_implode_tokens(char **splitted_tokens, char *delimeter)
 {
-	char *result = malloc(0);
+	char *result = NULL;
 	int splitted_token_index = 0, byteSize = 0;
 
 	while (splitted_tokens[splitted_token_index] != NULL)
@@ -25,6 +25,8 @@ char *orion_implode_tokens(char **splitted_tokens, char *delimeter)
 		splitted_token_index++;
 		free(splitted_tokens);
 	}
+
+	free(result);
 
 	return (result);
 }

@@ -21,8 +21,8 @@ void orion_handle_file(char *file_name)
 	else
 	{
 		while ((bytes_read = read(file_handler, orion_file_buffer,
-						sizeof(orion_file_buffer))) >
-				0)
+								   sizeof(orion_file_buffer))) >
+			   0)
 		{
 			orion_file_buffer[bytes_read] = '\0';
 			if (!orion_is_white_space(orion_file_buffer))
@@ -88,3 +88,4 @@ void orion_process_file(char *file_name)
 
 	orion_handle_file(file_name);
 }
+

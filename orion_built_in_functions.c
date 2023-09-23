@@ -27,10 +27,11 @@ int orion_exit_shell(char **parsed_cmd)
 					orion_shell_name, "exit", exit_status);
 
 			write(STDERR_FILENO, error_message, strlen(error_message));
-			free(error_message);
 		}
 		else
 			exit(exit_status);
+
+		free(error_message);
 		return (exit_status);
 	}
 	else

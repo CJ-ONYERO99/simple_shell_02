@@ -12,7 +12,6 @@ char *orion_get_cmd_path(char *cmd)
 	system_path = getenv("PATH");
 	copy_of_system_path = strdup(system_path);
 
-	/* Do PATH manipulation here */
 
 	splitted_path = orion_tokenize_str(copy_of_system_path, ":");
 
@@ -28,12 +27,13 @@ char *orion_get_cmd_path(char *cmd)
 			if (access(full_path, X_OK) == 0)
 			{
 				free(copy_of_system_path);
+				free(splitted_path);
 				return (full_path);
 			}
+			free(full_path);
 			splitted_path = orion_tokenize_str(NULL, ":");
 		}
 
-		free(full_path);
 	}
 
 	free(copy_of_system_path);
