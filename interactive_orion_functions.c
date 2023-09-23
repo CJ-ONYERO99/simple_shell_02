@@ -4,14 +4,13 @@
  * start_orion_interactive - start Orion shell in interactive mode
  * Return: void
  */
-
 void start_orion_interactive(void)
 {
-	char *cmd_input;
+	char *cmd_input = NULL;
 	size_t orion_linecap = 0;
 	int shell_status = 1;
 	ssize_t getline_result;
-	char **parsed_cmd;
+	char **parsed_cmd = NULL;
 
 	while (shell_status == 1)
 	{
@@ -27,13 +26,22 @@ void start_orion_interactive(void)
 		}
 		else
 		{
+			if (cmd_input[getline_result - 1] == '\n')
+				cmd_input[getline_result - 1] = '\0';
+
 			if (!orion_is_white_space(cmd_input))
 			{
 				parsed_cmd = orion_parse_cmd(cmd_input, ORION_TOKEN_SEPARATOR);
-				if (parsed_cmd[0][0] != '#')
-					execute_orion_cmd(parsed_cmd);
-				free_orion_cmd_memory(parsed_cmd);
+				if (parsed_cmd)
+				{
+					if (parsed_cmd[0] && parsed_cmd[0][0] != '#')
+						execute_orion_cmd(parsed_cmd);
+					free_orion_cmd_memory(parsed_cmd);
+				}
 			}
 		}
 	}
+
+	free(cmd_input);
 }
+
