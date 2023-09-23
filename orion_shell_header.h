@@ -36,8 +36,6 @@ void free_orion_cmd_memory(char **parsed_cmd);
 void execute_orion_system_call(char *cmd_to_execute, char **parsed_args);
 void handle_orion_file(char *file_name);
 void orion_process_file(char *file_name);
-void handle_non_builtin_cmds(char **parsed_cmd);
-void execute_ls_l(void);
 
 /* ORION BUILT-IN FUNCTIONS */
 int orion_exit_shell(char **parsed_cmd);

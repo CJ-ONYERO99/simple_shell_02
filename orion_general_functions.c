@@ -1,8 +1,9 @@
 #include "orion_shell_header.h"
 
 /**
- * is_orion_interactive - checks whether shell is in interactive mode
- * Return: 1 or 0 as int
+ * is_orion_interactive - Checks whether the shell is in interactive mode.
+ *
+ * Return: 1 if interactive, 0 otherwise.
  */
 int is_orion_interactive(void)
 {
@@ -10,9 +11,9 @@ int is_orion_interactive(void)
 }
 
 /**
- * execute_orion_cmd - function to execute command
- * @parsed_cmd: pointer to parsed commands
- * Return: void
+ * execute_orion_cmd - Function to execute a command.
+ *
+ * @parsed_cmd: Pointer to parsed commands.
  */
 void execute_orion_cmd(char **parsed_cmd)
 {
@@ -25,12 +26,11 @@ void execute_orion_cmd(char **parsed_cmd)
 	int orion_built_in_num, is_built_in = 0, orion_counter = 0;
 
 	orion_built_in_num = sizeof(orion_built_in_functions) /
-		sizeof(orion_built_in_functions[0]);
+						sizeof(orion_built_in_functions[0]);
 
 	while (orion_counter < orion_built_in_num)
 	{
-		if (strcmp(parsed_cmd[0],
-					orion_built_in_functions[orion_counter].name) == 0)
+		if (strcmp(parsed_cmd[0], orion_built_in_functions[orion_counter].name) == 0)
 		{
 			is_built_in = 1;
 			orion_built_in_functions[orion_counter].command(parsed_cmd);
@@ -41,68 +41,24 @@ void execute_orion_cmd(char **parsed_cmd)
 
 	if (is_built_in == 0)
 	{
-		handle_non_builtin_cmds(parsed_cmd);
-	}
-}
-
-/**
- * handle_non_builtin_cmds - handle non-built-in commands
- * @parsed_cmd: parsed command to execute
- * Return: void
- */
-void handle_non_builtin_cmds(char **parsed_cmd)
-{
-	if (strcmp(parsed_cmd[0], "ls") == 0 && strcmp(parsed_cmd[1], "-l") == 0)
-	{
-		execute_ls_l();
-	}
-	else
-	{
 		perform_orion_actions(parsed_cmd);
 	}
 }
 
 /**
- * execute_ls_l - execute the ls -l command
- * @parsed_cmd: parsed command to execute
- * Return: void
+ * orion_is_white_space - Check if a string contains only whitespace characters
+ *
+ * @input_str: Pointer to the string to check.
+ *
+ * Return: 1 if whitespace, 0 otherwise.
  */
-void execute_ls_l(void)
-{
-	pid_t child_pid;
-	int status;
-
-	child_pid = fork();
-
-	if (child_pid == 0)
-	{
-		execlp("ls", "ls", "-l", (char *)NULL);
-		perror("ls -l");
-		exit(EXIT_FAILURE);
-	}
-	else if (child_pid < 0)
-	{
-		perror("Fork failed");
-	}
-	else
-	{
-		waitpid(child_pid, &status, 0);
-	}
-}
-
-/**
- * orion_is_white_space - checks if
- * string contains only whitespace characters
- * @input_string: pointer to string to check
- * Return: 1 if whitespace else 0
- */
-int orion_is_white_space(char *input_string)
+int orion_is_white_space(char *input_str)
 {
 	int is_white = 1, orion_counter = 0;
 
-	while (input_string[orion_counter])
+	while (input_str[orion_counter])
 	{
-		if (!isspace(input_string[orion_counter]))
+		if (!isspace(input_str[orion_counter]))
 		{
 			is_white = 0;
 			break;
